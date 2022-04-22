@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  db:
+    image: mariadb:10
+    container_name: marvrus_code_test_db
+    env_file: ./docker-conf/mariadb/.env
+    environment:
+      TZ: Asia/Seoul
+    volumes:
+      - "./docker-conf/mariadb/initdb.d:/docker-entrypoint-initdb.d"
+      - ./docker-conf/mariadb/conf.d:/etc/mysql/conf.d
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--lower_case_table_names=1']
+    restart: always
+    ports:
+      - 13306:3306
+
+  mongo:
+    image: mongo
+    container_name: marvrus_code_test_nosql_db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: projectb
+      MONGO_INITDB_ROOT_PASSWORD: 1q2w3e4r!!Q
+      MONGO_INITDB_DATABASE: projectb_nosql
+    ports:
+      - "27017:27017"
+    env_file: ./docker-conf/mongodb/.env
+    volumes:
+      - ./docker-conf/mongodb/init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    expose:
+      - "27017"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+      
+volumes:
+  maven-vol:
+  db-vol:

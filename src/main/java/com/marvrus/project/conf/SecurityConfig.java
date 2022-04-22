@@ -77,10 +77,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
         return source;
     }
-    
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
 }

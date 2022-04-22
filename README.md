@@ -13,6 +13,11 @@
   -Dspring.profiles.active="local" -Dfile.encoding=UTF-8
   ```
 
+- 테스트 빌드 완료 API swwagger uri
+```
+http://localhost:8080/swagger-ui/
+```
+
 ### Source spec
 
 - 비어 있고, 몽고로 이루어진 sample doc 이 하나 존재.
